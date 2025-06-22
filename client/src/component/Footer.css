@@ -1,0 +1,118 @@
+/* Footer.css */
+.custom-footer {
+  background: #eaf7f6;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-brand {
+  max-width: 280px;
+}
+
+.logo-circle {
+  background: #b2ebf2;
+  color: #00796b;
+  font-weight: bold;
+  font-size: 1.3rem;
+  padding: 0.7rem;
+  border-radius: 50%;
+  width: 50px;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.brand-text {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.social-icons i {
+  margin-right: 0.8rem;
+  font-size: 1.2rem;
+  color: #00796b;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.social-icons i:hover {
+  color: #004d40;
+}
+
+.footer-links {
+  display: flex;
+  gap: 3rem;
+}
+
+.footer-links h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.4rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footer-links li:hover {
+  color: #00796b;
+}
+
+.newsletter {
+  max-width: 300px;
+}
+
+.newsletter h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.newsletter p {
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.newsletter input {
+  padding: 0.5rem;
+  width: 65%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.newsletter button {
+  padding: 0.5rem 1rem;
+  background-color: #00796b;
+  color: white;
+  border: none;
+  margin-left: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.newsletter button:hover {
+  background-color: #004d40;
+}
+
+.footer-bottom {
+  border-top: 1px solid #ccc;
+  padding-top: 1rem;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

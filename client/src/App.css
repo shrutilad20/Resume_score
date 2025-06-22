@@ -1,38 +1,108 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Layout */
+.app {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom right, #fdf6f0, #e0f7fa);
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #e0f7fa;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00796B;
+}
+
+.loginButton {
+  background-color: #AEDFF7;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.loginButton:hover {
+  background-color: #90caf9;
+  transform: scale(1.05);
+}
+.mainContent {
+  flex-grow: 1;
+  padding: 1rem;              /* 🔽 reduced from 2rem */
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;        /* ✅ centers vertically */
 }
 
-.App-link {
-  color: #61dafb;
+.upload-section {
+  text-align: center;
+  padding: 1rem 0;           /* 🔽 tighter vertical spacing */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.upload-illustration {
+  width: 180px;
+  margin-bottom: 1rem;
+}
+
+.upload-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #00695C;
+}
+
+.upload-subtitle {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+/* Card */
+.resume-card {
+  background: #e0f7fa;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  max-width: 500px;
+  margin: 0 auto;
+  animation: fadeIn 0.7s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.upload-illustration {
+  width: 200px;
+  margin-bottom: 1.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+.upload-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #00695C;
+}
+
+.upload-subtitle {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
 }
