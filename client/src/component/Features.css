@@ -1,0 +1,19 @@
+.features-page {
+  padding: 2rem;
+  background-color: #fdf6f0;
+  color: #333;
+}
+
+.features-page h1 {
+  text-align: center;
+  color: #00796B;
+  margin-bottom: 2rem;
+}
+
+.feature-card {
+  background-color: #e0f7fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
