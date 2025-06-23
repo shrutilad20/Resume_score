@@ -32,6 +32,8 @@ public class ResumeController {
 
             return ResponseEntity.ok("✅ File uploaded: " + fileName + "\n\nParsed Content:\n" + resumeText);
 
+
+            
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("⚠️ Error reading file: " + e.getMessage());
