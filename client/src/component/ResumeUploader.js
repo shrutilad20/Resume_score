@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const ResumeUploader = () => {
   const [file, setFile] = useState(null);
@@ -8,21 +9,24 @@ const ResumeUploader = () => {
     setFile(e.target.files[0]);
   };
 
-  const handleSubmit = async () => {
-    if (!file) return;
+  const handleUpload = async () => {
+    if (!file) {
+      setResponse("Please select a file before uploading.");
+      return;
+    }
 
     const formData = new FormData();
-    formData.append('resume', file);
+    formData.append("file", file); // ✅ key = "file" to match Spring @RequestParam("file")
 
     try {
-      const res = await fetch('http://localhost:8080/api/resume/upload', {
-        method: 'POST',
-        body: formData,
+      const res = await axios.post("http://localhost:8080/api/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
-      const result = await res.text();
-      setResponse(result);
+      setResponse(res.data);
     } catch (err) {
-      console.error(err);
+      setResponse("Upload failed: " + err.message);
     }
   };
 
@@ -31,16 +35,18 @@ const ResumeUploader = () => {
       <div style={styles.card}>
         <h2 style={styles.heading}>📄 ATS Resume Checker</h2>
 
-        <input type="file" accept="application/pdf" onChange={handleFileChange} style={styles.input} />
+        <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} style={styles.input} />
 
-        <button onClick={handleSubmit} style={styles.button}>
+        <button onClick={handleUpload} style={styles.button}>
           Upload & Analyze
         </button>
 
-        {response && <div style={styles.resultBox}>
-          <h3 style={{ color: "#555" }}>📋 Result:</h3>
-          <p>{response}</p>
-        </div>}
+        {response && (
+          <div style={styles.resultBox}>
+            <h3 style={{ color: "#555" }}>📋 Result:</h3>
+            <p>{response}</p>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -74,7 +80,8 @@ const styles = {
     padding: '0.5rem',
     borderRadius: '8px',
     border: '1px solid #ccc',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    width: '100%'
   },
   button: {
     padding: '0.7rem 1.5rem',
@@ -83,7 +90,8 @@ const styles = {
     borderRadius: '8px',
     cursor: 'pointer',
     fontWeight: 'bold',
-    color: '#00334e'
+    color: '#00334e',
+    marginTop: '1rem'
   },
   resultBox: {
     marginTop: '2rem',
