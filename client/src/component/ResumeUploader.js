@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
 const ResumeUploader = () => {
   const [file, setFile] = useState(null);
@@ -11,7 +12,7 @@ const ResumeUploader = () => {
 
   const handleUpload = async () => {
     if (!file) {
-      setResponse("Please select a file before uploading.");
+      setResponse("❗ Please select a file before uploading.");
       return;
     }
 
@@ -26,81 +27,50 @@ const ResumeUploader = () => {
       });
       setResponse(res.data);
     } catch (err) {
-      setResponse("Upload failed: " + err.message);
+      setResponse("❌ Upload failed: " + err.message);
     }
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.card}>
-        <h2 style={styles.heading}>📄 ATS Resume Checker</h2>
+    <motion.div
+      className="flex flex-col items-center justify-center w-full max-w-xl bg-white rounded-xl shadow-lg p-6 transition-all"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <h2 className="text-2xl font-bold text-teal-700 mb-4">
+        📄 ATS Resume Checker
+      </h2>
 
-        <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} style={styles.input} />
+      <input
+        type="file"
+        accept=".pdf,.doc,.docx,.txt"
+        onChange={handleFileChange}
+        className="w-full p-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 mb-4"
+      />
 
-        <button onClick={handleUpload} style={styles.button}>
-          Upload & Analyze
-        </button>
+      <motion.button
+        onClick={handleUpload}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="px-5 py-2 bg-teal-500 text-white font-semibold rounded-lg shadow hover:bg-teal-600 transition"
+      >
+        Upload & Analyze
+      </motion.button>
 
-        {response && (
-          <div style={styles.resultBox}>
-            <h3 style={{ color: "#555" }}>📋 Result:</h3>
-            <p>{response}</p>
-          </div>
-        )}
-      </div>
-    </div>
+      {response && (
+        <motion.div
+          className="w-full mt-6 p-4 bg-gray-50 border border-teal-100 rounded-lg text-sm text-gray-800 whitespace-pre-wrap"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          <h3 className="font-semibold text-teal-600 mb-2">📋 Result:</h3>
+          <p>{response}</p>
+        </motion.div>
+      )}
+    </motion.div>
   );
-};
-
-const styles = {
-  container: {
-    minHeight: '100vh',
-    backgroundColor: '#FDF6F0',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '2rem',
-    fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
-  },
-  card: {
-    backgroundColor: '#E0F7FA',
-    borderRadius: '16px',
-    padding: '2rem',
-    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-    width: '100%',
-    maxWidth: '500px',
-    textAlign: 'center'
-  },
-  heading: {
-    marginBottom: '1rem',
-    color: '#00796B'
-  },
-  input: {
-    margin: '1rem 0',
-    padding: '0.5rem',
-    borderRadius: '8px',
-    border: '1px solid #ccc',
-    backgroundColor: '#fff',
-    width: '100%'
-  },
-  button: {
-    padding: '0.7rem 1.5rem',
-    backgroundColor: '#AEDFF7',
-    border: 'none',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    fontWeight: 'bold',
-    color: '#00334e',
-    marginTop: '1rem'
-  },
-  resultBox: {
-    marginTop: '2rem',
-    backgroundColor: '#FFF4F7',
-    padding: '1rem',
-    borderRadius: '10px',
-    color: '#444',
-    textAlign: 'left'
-  }
 };
 
 export default ResumeUploader;
